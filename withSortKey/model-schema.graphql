@@ -1,0 +1,15 @@
+type Primary @model {
+  tenantId: ID! @primaryKey(sortKeyFields: ["instanceId", "recordId"])
+  instanceId: ID!
+  recordId: ID!
+  content: String
+  related: [Related!] @hasMany(references: ["primaryTenantId", "primaryInstanceId", "primaryRecordId"])
+}
+
+type Related @model {
+  content: String
+  primaryTenantId: ID!
+  primaryInstanceId: ID!
+  primaryRecordId: ID!
+  primary: Primary @belongsTo(references: ["primaryTenantId", "primaryInstanceId", "primaryRecordId"])
+}

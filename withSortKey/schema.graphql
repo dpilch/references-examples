@@ -1,15 +1,331 @@
-type Primary @model {
-  tenantId: ID! @primaryKey(sortKeyFields: ["instanceId", "recordId"])
+type Primary {
+  tenantId: ID!
   instanceId: ID!
   recordId: ID!
   content: String
-  related: [Related!] @hasMany(references: ["primaryTenantId", "primaryInstanceId", "primaryRecordId"])
+  related(filter: ModelRelatedFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelRelatedConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
 
-type Related @model {
+type Related {
   content: String
   primaryTenantId: ID!
   primaryInstanceId: ID!
   primaryRecordId: ID!
-  primary: Primary @belongsTo(references: ["primaryTenantId", "primaryInstanceId", "primaryRecordId"])
+  primary: Primary
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelPrimaryConnection {
+  items: [Primary]!
+  nextToken: String
+}
+
+input ModelPrimaryFilterInput {
+  tenantId: ModelIDInput
+  instanceId: ModelIDInput
+  recordId: ModelIDInput
+  content: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelPrimaryFilterInput]
+  or: [ModelPrimaryFilterInput]
+  not: ModelPrimaryFilterInput
+}
+
+type Query {
+  getPrimary(tenantId: ID!, instanceId: ID!, recordId: ID!): Primary
+  listPrimaries(tenantId: ID, instanceIdRecordId: ModelPrimaryPrimaryCompositeKeyConditionInput, filter: ModelPrimaryFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPrimaryConnection
+  getRelated(id: ID!): Related
+  listRelateds(filter: ModelRelatedFilterInput, limit: Int, nextToken: String): ModelRelatedConnection
+}
+
+input ModelPrimaryConditionInput {
+  content: ModelStringInput
+  and: [ModelPrimaryConditionInput]
+  or: [ModelPrimaryConditionInput]
+  not: ModelPrimaryConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreatePrimaryInput {
+  tenantId: ID!
+  instanceId: ID!
+  recordId: ID!
+  content: String
+}
+
+input UpdatePrimaryInput {
+  tenantId: ID!
+  instanceId: ID!
+  recordId: ID!
+  content: String
+}
+
+input DeletePrimaryInput {
+  tenantId: ID!
+  instanceId: ID!
+  recordId: ID!
+}
+
+type Mutation {
+  createPrimary(input: CreatePrimaryInput!, condition: ModelPrimaryConditionInput): Primary
+  updatePrimary(input: UpdatePrimaryInput!, condition: ModelPrimaryConditionInput): Primary
+  deletePrimary(input: DeletePrimaryInput!, condition: ModelPrimaryConditionInput): Primary
+  createRelated(input: CreateRelatedInput!, condition: ModelRelatedConditionInput): Related
+  updateRelated(input: UpdateRelatedInput!, condition: ModelRelatedConditionInput): Related
+  deleteRelated(input: DeleteRelatedInput!, condition: ModelRelatedConditionInput): Related
+}
+
+input ModelSubscriptionPrimaryFilterInput {
+  tenantId: ModelSubscriptionIDInput
+  instanceId: ModelSubscriptionIDInput
+  recordId: ModelSubscriptionIDInput
+  content: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionPrimaryFilterInput]
+  or: [ModelSubscriptionPrimaryFilterInput]
+}
+
+type Subscription {
+  onCreatePrimary(filter: ModelSubscriptionPrimaryFilterInput): Primary @aws_subscribe(mutations: ["createPrimary"])
+  onUpdatePrimary(filter: ModelSubscriptionPrimaryFilterInput): Primary @aws_subscribe(mutations: ["updatePrimary"])
+  onDeletePrimary(filter: ModelSubscriptionPrimaryFilterInput): Primary @aws_subscribe(mutations: ["deletePrimary"])
+  onCreateRelated(filter: ModelSubscriptionRelatedFilterInput): Related @aws_subscribe(mutations: ["createRelated"])
+  onUpdateRelated(filter: ModelSubscriptionRelatedFilterInput): Related @aws_subscribe(mutations: ["updateRelated"])
+  onDeleteRelated(filter: ModelSubscriptionRelatedFilterInput): Related @aws_subscribe(mutations: ["deleteRelated"])
+}
+
+type ModelRelatedConnection {
+  items: [Related]!
+  nextToken: String
+}
+
+input ModelRelatedFilterInput {
+  content: ModelStringInput
+  primaryTenantId: ModelIDInput
+  primaryInstanceId: ModelIDInput
+  primaryRecordId: ModelIDInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelRelatedFilterInput]
+  or: [ModelRelatedFilterInput]
+  not: ModelRelatedFilterInput
+}
+
+input ModelRelatedConditionInput {
+  content: ModelStringInput
+  primaryTenantId: ModelIDInput
+  primaryInstanceId: ModelIDInput
+  primaryRecordId: ModelIDInput
+  and: [ModelRelatedConditionInput]
+  or: [ModelRelatedConditionInput]
+  not: ModelRelatedConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateRelatedInput {
+  content: String
+  primaryTenantId: ID!
+  primaryInstanceId: ID!
+  primaryRecordId: ID!
+  id: ID
+}
+
+input UpdateRelatedInput {
+  content: String
+  primaryTenantId: ID
+  primaryInstanceId: ID
+  primaryRecordId: ID
+  id: ID!
+}
+
+input DeleteRelatedInput {
+  id: ID!
+}
+
+input ModelSubscriptionRelatedFilterInput {
+  content: ModelSubscriptionStringInput
+  primaryTenantId: ModelSubscriptionIDInput
+  primaryInstanceId: ModelSubscriptionIDInput
+  primaryRecordId: ModelSubscriptionIDInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionRelatedFilterInput]
+  or: [ModelSubscriptionRelatedFilterInput]
+}
+
+input ModelPrimaryPrimaryCompositeKeyConditionInput {
+  eq: ModelPrimaryPrimaryCompositeKeyInput
+  le: ModelPrimaryPrimaryCompositeKeyInput
+  lt: ModelPrimaryPrimaryCompositeKeyInput
+  ge: ModelPrimaryPrimaryCompositeKeyInput
+  gt: ModelPrimaryPrimaryCompositeKeyInput
+  between: [ModelPrimaryPrimaryCompositeKeyInput]
+  beginsWith: ModelPrimaryPrimaryCompositeKeyInput
+}
+
+input ModelPrimaryPrimaryCompositeKeyInput {
+  instanceId: ID
+  recordId: ID
 }
