@@ -1,0 +1,130 @@
+# this is an auto generated file. This will be overwritten
+
+query GetPrimary($id: ID!) {
+  getPrimary(id: $id) {
+    id
+    relatedMany {
+      nextToken
+      __typename
+    }
+    relatedOne {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListPrimaries(
+  $id: ID
+  $filter: ModelPrimaryFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listPrimaries(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetRelatedMany($id: ID!) {
+  getRelatedMany(id: $id) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListRelatedManies(
+  $id: ID
+  $filter: ModelRelatedManyFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listRelatedManies(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetRelatedOne($id: ID!) {
+  getRelatedOne(id: $id) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListRelatedOnes(
+  $id: ID
+  $filter: ModelRelatedOneFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listRelatedOnes(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}

@@ -1,0 +1,115 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreatePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onCreatePrimary(filter: $filter) {
+    tenantId
+    instanceId
+    recordId
+    content
+    related {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdatePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onUpdatePrimary(filter: $filter) {
+    tenantId
+    instanceId
+    recordId
+    content
+    related {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeletePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onDeletePrimary(filter: $filter) {
+    tenantId
+    instanceId
+    recordId
+    content
+    related {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnCreateRelated($filter: ModelSubscriptionRelatedFilterInput) {
+  onCreateRelated(filter: $filter) {
+    content
+    primaryTenantId
+    primaryInstanceId
+    primaryRecordId
+    primary {
+      tenantId
+      instanceId
+      recordId
+      content
+      createdAt
+      updatedAt
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateRelated($filter: ModelSubscriptionRelatedFilterInput) {
+  onUpdateRelated(filter: $filter) {
+    content
+    primaryTenantId
+    primaryInstanceId
+    primaryRecordId
+    primary {
+      tenantId
+      instanceId
+      recordId
+      content
+      createdAt
+      updatedAt
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteRelated($filter: ModelSubscriptionRelatedFilterInput) {
+  onDeleteRelated(filter: $filter) {
+    content
+    primaryTenantId
+    primaryInstanceId
+    primaryRecordId
+    primary {
+      tenantId
+      instanceId
+      recordId
+      content
+      createdAt
+      updatedAt
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    __typename
+  }
+}

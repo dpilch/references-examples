@@ -1,0 +1,94 @@
+# this is an auto generated file. This will be overwritten
+
+query GetPrimary($tenantId: ID!, $instanceId: ID!, $recordId: ID!) {
+  getPrimary(
+    tenantId: $tenantId
+    instanceId: $instanceId
+    recordId: $recordId
+  ) {
+    tenantId
+    instanceId
+    recordId
+    content
+    related {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListPrimaries(
+  $tenantId: ID
+  $instanceIdRecordId: ModelPrimaryPrimaryCompositeKeyConditionInput
+  $filter: ModelPrimaryFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listPrimaries(
+    tenantId: $tenantId
+    instanceIdRecordId: $instanceIdRecordId
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      tenantId
+      instanceId
+      recordId
+      content
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetRelated($id: ID!) {
+  getRelated(id: $id) {
+    content
+    primaryTenantId
+    primaryInstanceId
+    primaryRecordId
+    primary {
+      tenantId
+      instanceId
+      recordId
+      content
+      createdAt
+      updatedAt
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListRelateds(
+  $filter: ModelRelatedFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRelateds(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      content
+      primaryTenantId
+      primaryInstanceId
+      primaryRecordId
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}

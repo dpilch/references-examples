@@ -1,0 +1,169 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreatePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onCreatePrimary(filter: $filter) {
+    id
+    relatedMany {
+      nextToken
+      __typename
+    }
+    relatedOne {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdatePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onUpdatePrimary(filter: $filter) {
+    id
+    relatedMany {
+      nextToken
+      __typename
+    }
+    relatedOne {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeletePrimary($filter: ModelSubscriptionPrimaryFilterInput) {
+  onDeletePrimary(filter: $filter) {
+    id
+    relatedMany {
+      nextToken
+      __typename
+    }
+    relatedOne {
+      id
+      primaryId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnCreateRelatedMany(
+  $filter: ModelSubscriptionRelatedManyFilterInput
+) {
+  onCreateRelatedMany(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateRelatedMany(
+  $filter: ModelSubscriptionRelatedManyFilterInput
+) {
+  onUpdateRelatedMany(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteRelatedMany(
+  $filter: ModelSubscriptionRelatedManyFilterInput
+) {
+  onDeleteRelatedMany(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnCreateRelatedOne(
+  $filter: ModelSubscriptionRelatedOneFilterInput
+) {
+  onCreateRelatedOne(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateRelatedOne(
+  $filter: ModelSubscriptionRelatedOneFilterInput
+) {
+  onUpdateRelatedOne(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteRelatedOne(
+  $filter: ModelSubscriptionRelatedOneFilterInput
+) {
+  onDeleteRelatedOne(filter: $filter) {
+    id
+    primaryId
+    primary {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
