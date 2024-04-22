@@ -7,6 +7,9 @@ extension Related {
    public enum CodingKeys: String, ModelKey {
     case id
     case content
+    case primaryTenantId
+    case primaryInstanceId
+    case primaryRecordId
     case primary
     case createdAt
     case updatedAt
@@ -28,6 +31,9 @@ extension Related {
     model.fields(
       .field(related.id, is: .required, ofType: .string),
       .field(related.content, is: .optional, ofType: .string),
+      .field(related.primaryTenantId, is: .required, ofType: .string),
+      .field(related.primaryInstanceId, is: .required, ofType: .string),
+      .field(related.primaryRecordId, is: .required, ofType: .string),
       .belongsTo(related.primary, is: .optional, ofType: Primary.self, targetNames: ["primaryTenantId", "primaryInstanceId", "primaryRecordId"]),
       .field(related.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(related.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)

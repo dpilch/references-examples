@@ -28,8 +28,8 @@ extension Primary {
     
     model.fields(
       .field(primary.id, is: .required, ofType: .string),
-      .hasMany(primary.relatedMany, is: .optional, ofType: RelatedMany.self, associatedWith: RelatedMany.keys.primaryId),
-      .hasOne(primary.relatedOne, is: .optional, ofType: RelatedOne.self, associatedWith: RelatedOne.keys.primaryId),
+      .hasMany(primary.relatedMany, is: .optional, ofType: RelatedMany.self, associatedFields: [RelatedMany.keys.primaryId],
+      .hasOne(primary.relatedOne, is: .optional, ofType: RelatedOne.self, associatedFields: [RelatedOne.keys.primaryId]),
       .field(primary.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(primary.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)
     )

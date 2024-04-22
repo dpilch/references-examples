@@ -6,6 +6,7 @@ extension RelatedOne {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
+    case primaryId
     case primary
     case createdAt
     case updatedAt
@@ -27,6 +28,7 @@ extension RelatedOne {
     
     model.fields(
       .field(relatedOne.id, is: .required, ofType: .string),
+      .field(relatedOne.primaryId, is: .required, ofType: .string),
       .belongsTo(relatedOne.primary, is: .optional, ofType: Primary.self, targetNames: ["primaryId"]),
       .field(relatedOne.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(relatedOne.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)

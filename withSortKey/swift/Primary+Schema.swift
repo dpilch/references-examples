@@ -33,7 +33,7 @@ extension Primary {
       .field(primary.instanceId, is: .required, ofType: .string),
       .field(primary.recordId, is: .required, ofType: .string),
       .field(primary.content, is: .optional, ofType: .string),
-      .hasMany(primary.related, is: .optional, ofType: Related.self, associatedWith: Related.keys.primaryTenantId),
+      .hasMany(primary.related, is: .optional, ofType: Related.self, associatedFields: [Related.keys.primaryTenantId, Related.keys.primaryInstanceId, Related.keys.primaryRecordId],
       .field(primary.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(primary.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)
     )
